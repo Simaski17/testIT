@@ -1,7 +1,8 @@
-package com.ittalent.testitandroid
+package com.ittalent.testitandroid.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ittalent.testitandroid.R
 
 class MainActivity : AppCompatActivity() {
 
