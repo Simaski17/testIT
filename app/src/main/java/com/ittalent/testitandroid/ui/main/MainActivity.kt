@@ -4,17 +4,21 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.View
 import android.widget.SearchView
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ittalent.domain.ItunesSongs
 import com.ittalent.testitandroid.R
 import com.ittalent.testitandroid.ui.common.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var component: MainActivityComponent
     private val viewModel: MainViewModel by lazy { getViewModel { component.mainViewModel } }
+    private lateinit var itunesAdapter: ItunesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +29,11 @@ class MainActivity : AppCompatActivity() {
         viewModel.model.observe(this, Observer(::updateUi))
         viewModel.getListSongs("franco de vita")
 
+        recycler.apply {
+            setHasFixedSize(true)
+        }
+
+
     }
 
     private fun updateUi(event: Data<List<ItunesSongs>>?) {
@@ -32,17 +41,23 @@ class MainActivity : AppCompatActivity() {
         event.with {
             when (dataState) {
                 DataState.LOADING -> {
-
+                    progress.visibility = View.VISIBLE
                 }
                 DataState.SUCCESS -> {
-                    Log.e("RESULT","RESULT "+event)
+                    progress.visibility = View.GONE
                 }
                 DataState.ERROR -> {
-
+                    progress.visibility = View.GONE
                 }
             }
 
             data.notNull {
+
+                itunesAdapter = ItunesAdapter(it){
+
+                }
+
+                recycler.adapter = itunesAdapter
 
             }
         }
