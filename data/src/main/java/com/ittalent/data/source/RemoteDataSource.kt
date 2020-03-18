@@ -4,6 +4,6 @@ import com.ittalent.domain.ItunesSongs
 
 interface RemoteDataSource {
 
-    suspend fun getListSongs(song: String) : List<ItunesSongs>
+    suspend fun getListSongs(song: String, offset: Int) : ArrayList<ItunesSongs>
 
 }

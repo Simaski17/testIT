@@ -5,8 +5,8 @@ import com.ittalent.domain.ItunesSongs
 
 class ItunesRepository(private val remoteDataSource: RemoteDataSource) {
 
-    suspend fun getListSongs(song: String): List<ItunesSongs> {
-        return remoteDataSource.getListSongs(song)
+    suspend fun getListSongs(song: String, offset: Int): ArrayList<ItunesSongs> {
+        return remoteDataSource.getListSongs(song, offset)
     }
 
 }

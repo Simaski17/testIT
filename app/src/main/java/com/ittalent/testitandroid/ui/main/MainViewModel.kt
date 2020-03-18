@@ -15,20 +15,20 @@ import kotlinx.coroutines.withContext
 
 class MainViewModel(private val getListSongsUseCase: GetListSongsUseCase): ScopedViewModel() {
 
-    val model = MutableLiveData<Data<List<ItunesSongs>>>()
+    val model = MutableLiveData<Data<ArrayList<ItunesSongs>>>()
 
     init {
         initScope()
     }
 
 
-    fun getListSongs(song: String){
+    fun getListSongs(song: String, offset: Int){
         launch {
             model.postLoading()
 
             runCatching {
                 withContext(Dispatchers.IO){
-                    getListSongsUseCase.invoke(song)
+                    getListSongsUseCase.invoke(song, offset)
                 }
             }.onSuccess { response ->
                 if (response.isNotEmpty()){

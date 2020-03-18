@@ -5,6 +5,6 @@ import com.ittalent.domain.ItunesSongs
 
 class TheItunesDbDataSource(private val theItunesDbService: TheItunesDbService) : RemoteDataSource {
 
-    override suspend fun getListSongs(song: String): List<ItunesSongs> =
-    theItunesDbService.listSongsAsync(song).execute().body()!!.results
+    override suspend fun getListSongs(song: String, offset: Int): ArrayList<ItunesSongs> =
+    theItunesDbService.listSongsAsync(song, offset).execute().body()!!.results
 }

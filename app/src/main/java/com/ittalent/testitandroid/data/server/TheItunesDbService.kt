@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface TheItunesDbService {
 
-    @POST("search?mediaType=music&limit=25")
-    fun listSongsAsync(@Query("term") terms: String): Call<ResultListItunes>
+    @POST("search?mediaType=music&limit=20")
+    fun listSongsAsync(@Query("term") terms: String, @Query("offset") offset: Int): Call<ResultListItunes>
 
 }
