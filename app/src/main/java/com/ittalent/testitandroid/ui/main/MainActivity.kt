@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private var offset: Int = 0
     private var ifLoading = true
     private val TAG = "ItunesTest"
+    private var song: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         component = app.component.plus(MainActivityModule())
 
         viewModel.model.observe(this, Observer(::updateUi))
-        viewModel.getListSongs("Katy Perry", offset)
 
         recycler.apply {
             setHasFixedSize(true)
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                                 Log.e(TAG, "End List")
                                 ifLoading = false
                                 offset += 20
-                                viewModel.getListSongs("Katy Perry", offset)
+                                viewModel.getListSongs(song, offset)
                             }
                         }
                     }
@@ -113,12 +113,12 @@ class MainActivity : AppCompatActivity() {
         searchView.setQueryHint("Buscar...")
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String): Boolean {
-                Log.e("TALENTIT", "newText $newText")
+                song = newText
                 return true
             }
 
             override fun onQueryTextSubmit(query: String): Boolean {
-                Log.e("TALENTIT SEARCH", "newText")
+                viewModel.getListSongs(song, offset)
                 return true
             }
         })
