@@ -1,6 +1,11 @@
 package com.ittalent.testitandroid.di
 
+import android.app.Application
+import androidx.room.Room
+import com.ittalent.data.source.LocalDataSource
 import com.ittalent.data.source.RemoteDataSource
+import com.ittalent.testitandroid.data.database.RoomDataSource
+import com.ittalent.testitandroid.data.database.SongsDatabase
 import com.ittalent.testitandroid.data.server.TheItunesDbDataSource
 import com.ittalent.testitandroid.data.server.TheItunesDbService
 import dagger.Module
@@ -14,6 +19,17 @@ import javax.inject.Singleton
 
 @Module
 class AppModule {
+
+    @Provides
+    @Singleton
+    fun databaseProvider(app: Application) = Room.databaseBuilder(
+        app,
+        SongsDatabase::class.java,
+        "songs-db"
+    ).build()
+
+    @Provides
+    fun localDataSourceProvider(db: SongsDatabase): LocalDataSource = RoomDataSource(db)
 
     @Singleton
     @Provides

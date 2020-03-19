@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         component = app.component.plus(MainActivityModule())
 
         viewModel.model.observe(this, Observer(::updateUi))
-        viewModel.getListSongs("franco de vita", offset)
+        viewModel.getListSongs("Katy Perry", offset)
 
         recycler.apply {
             setHasFixedSize(true)
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                                 Log.e(TAG, "End List")
                                 ifLoading = false
                                 offset += 20
-                                viewModel.getListSongs("franco de vita", offset)
+                                viewModel.getListSongs("Katy Perry", offset)
                             }
                         }
                     }

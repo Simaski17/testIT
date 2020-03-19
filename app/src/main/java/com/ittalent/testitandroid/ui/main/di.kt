@@ -1,6 +1,7 @@
 package com.ittalent.testitandroid.ui.main
 
 import com.ittalent.data.repository.ItunesRepository
+import com.ittalent.data.source.LocalDataSource
 import com.ittalent.usecases.GetListSongsUseCase
 import dagger.Module
 import dagger.Provides

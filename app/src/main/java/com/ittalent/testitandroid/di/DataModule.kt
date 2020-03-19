@@ -1,6 +1,7 @@
 package com.ittalent.testitandroid.di
 
 import com.ittalent.data.repository.ItunesRepository
+import com.ittalent.data.source.LocalDataSource
 import com.ittalent.data.source.RemoteDataSource
 import dagger.Module
 import dagger.Provides
@@ -9,6 +10,6 @@ import dagger.Provides
 class DataModule {
 
     @Provides
-    fun itunesRepositoryProvider(remoteDataSource: RemoteDataSource) = ItunesRepository(remoteDataSource)
+    fun itunesRepositoryProvider(localDataSource: LocalDataSource, remoteDataSource: RemoteDataSource) = ItunesRepository(localDataSource, remoteDataSource)
 
 }

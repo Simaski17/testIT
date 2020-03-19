@@ -1,10 +1,17 @@
-package com.ittalent.domain
+package com.ittalent.testitandroid.data.database
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+
+@Entity
 data class ItunesSongs (
+
     val wrapperType: String,
     val kind: String,
     val artistId: Int,
     val collectionId: Int,
+    @PrimaryKey(autoGenerate = false)
     val trackId: Int,
     val artistName: String,
     val collectionName: String,
