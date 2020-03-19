@@ -12,4 +12,11 @@ class ItunesRepository(private val localDataSource: LocalDataSource, private val
         return songs
     }
 
+    suspend fun findById(id: Int): ItunesSongs = localDataSource.findById(id)
+
+    suspend fun getListSongsAlbum(term: String): ArrayList<ItunesSongs> {
+        return remoteDataSource.getListSongsAlbum(term)
+    }
+
+
 }

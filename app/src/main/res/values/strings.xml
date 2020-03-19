@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestItAndroid</string>
+    <string name="list_songs">Lista De Canciones En el Album</string>
 </resources>

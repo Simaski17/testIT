@@ -16,6 +16,7 @@ import com.ittalent.domain.ItunesSongs
 import com.ittalent.testitandroid.R
 import com.ittalent.testitandroid.ui.common.*
 import com.ittalent.testitandroid.ui.common.DataState.*
+import com.ittalent.testitandroid.ui.detail.DetailActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -41,7 +42,11 @@ class MainActivity : AppCompatActivity() {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(context, 3)
 
-            itunesAdapter = ItunesAdapter() {}
+            itunesAdapter = ItunesAdapter() {
+                startActivity<DetailActivity>{
+                    putExtra(DetailActivity.SONG, it.trackId)
+                }
+            }
             recycler.adapter = itunesAdapter
 
             recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {

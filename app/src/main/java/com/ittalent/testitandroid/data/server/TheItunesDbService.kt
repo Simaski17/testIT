@@ -11,4 +11,7 @@ interface TheItunesDbService {
     @POST("search?mediaType=music&limit=20")
     fun listSongsAsync(@Query("term") terms: String, @Query("offset") offset: Int): Call<ResultListItunes>
 
+    @POST("search?entity=song")
+    fun listSongsAlbumAsync(@Query("term") terms: String): Call<ResultListItunes>
+
 }
